@@ -1,0 +1,206 @@
+CREATE TABLE student (
+    student_id   INTEGER PRIMARY KEY,
+    name         TEXT,
+    surname      TEXT,
+    dateOfBirth  TEXT,
+    yearEnrolled INTEGER
+);
+1	Nguyễn	Văn A	1999-03-15	2020
+2	Trần	Thị B	2000-11-25	2020
+3	Lê	Minh C	1998-07-10	2016
+4	Phạm	Quốc D	2001-02-20	2019
+5	Đỗ	Thị E	1997-05-22	2015
+6	Vũ	Văn F	2000-09-12	2018
+7	Bùi	Thị G	1999-04-30	2017
+8	Hoàng	Văn H	1998-06-05	2016
+9	Phan	Thị I	2001-12-01	2019
+10	Đinh	Văn J	2000-08-14	2018
+
+---------------------------------------------------------------------------
+
+
+
+CREATE TABLE COURSE (
+    course_id     INTEGER  PRIMARY KEY,
+    name          TEXT,
+    creditPoints  INTERGER,
+    yearCommenced INTERGER
+);
+
+101	Toán học	3	2015
+102	Vật lý	4	2016
+103	Hóa học	3	2017
+104	Sinh học	4	2018
+105	Khoa học máy tính	6	2015
+106	Kinh tế học	3	2016
+107	Tâm lý học	4	2017
+108	Kỹ thuật	5	2018
+109	Lịch sử	3	2015
+110	Ngôn ngữ Anh	3	2016
+
+
+---------------------------------------------------------------------------
+
+CREATE TABLE staff (
+    course_id INTEGER PRIMARY KEY,
+    name      TEXT,
+    surname   TEXT,
+    jobTitle  TEXT
+);
+
+101	Nguyễn	Anh	Giáo sư
+102	Trần	Bình	Phó Giáo sư
+103	Lê	Chiến	Giảng viên
+104	Phạm	Dũng	Giảng viên chính
+105	Đỗ	Hoàng	Giáo sư
+106	Vũ	Kiên	Giảng viên
+107	Bùi	Lan	Trợ lý Giáo sư
+108	Hoàng	Mạnh	Giáo sư
+109	Phan	Ngọc	Giảng viên chính
+110	Đinh	Phong	Phó Giáo sư
+
+--------------------------------------------------------------------------------------
+CREATE TABLE program (
+    program_id    INTEGER  PRIMARY KEY,
+    name          TEXT,
+    creditPoints  INTERGER,
+    yearCommenced INTERGER
+);
+
+
+201	Chương trình Toán học	120	2015
+202	Chương trình Vật lý	130	2016
+203	Chương trình Hóa học	125	2017
+204	Chương trình Sinh học	135	2018
+205	Chương trình Khoa học máy tính	150	2015
+206	Chương trình Kinh tế học	120	2016
+207	Chương trình Tâm lý học	130	2017
+208	Chương trình Kỹ thuật	140	2018
+209	Chương trình Lịch sử	125	2015
+210	Chương trình Ngôn ngữ Anh	120	2016
+ ---------------------------------------------------------------------------------------------
+
+
+Câu5.
+SELECT * 
+FROM student
+WHERE name LIKE 'N%';
+
+1	Nguyễn	Văn A	1999-03-15	2017
+
+------------
+Câu6.
+select *
+from student
+where (2024 - yearEnrolled) = 4 
+
+None
+
+-------------
+Câu7
+SELECT * 
+FROM course
+ORDER BY creditPoints DESC;
+
+105	Khoa học máy tính	6	2015
+108	Kỹ thuật	5	2018
+102	Vật lý	4	2016
+104	Sinh học	4	2018
+107	Tâm lý học	4	2017
+101	Toán học	3	2015
+103	Hóa học	3	2017
+106	Kinh tế học	3	2016
+109	Lịch sử	3	2015
+110	Ngôn ngữ Anh	3	2016
+
+Cau8.
+UPDATE student
+SET name = 'Adam'
+WHERE student_id = (SELECT MIN(student_id) FROM student);
+
+select *
+from student 
+
+1	Adam	Văn A	1999-03-15	2017
+2	Trần	Thị B	2000-11-25	2018
+3	Lê	Minh C	1998-07-10	2016
+4	Phạm	Quốc D	2001-02-20	2019
+5	Đỗ	Thị E	1997-05-22	2015
+6	Vũ	Văn F	2000-09-12	2018
+7	Bùi	Thị G	1999-04-30	2017
+8	Hoàng	Văn H	1998-06-05	2016
+9	Phan	Thị I	2001-12-01	2019
+10	Đinh	Văn J	2000-08-14	2018
+-------------------------------
+Cau9.
+UPDATE course
+SET name = UPPER(name);
+
+select*
+from course 
+
+101	TOáN HọC	3	2015
+102	VậT Lý	4	2016
+103	HóA HọC	3	2017
+104	SINH HọC	4	2018
+105	KHOA HọC MáY TíNH	6	2015
+106	KINH Tế HọC	3	2016
+107	TâM Lý HọC	4	2017
+108	Kỹ THUậT	5	2018
+109	LịCH Sử	3	2015
+110	NGôN NGữ ANH	3	2016
+
+---------------------------
+Cau10.
+DELETE FROM student
+WHERE dateOfBirth = (SELECT MIN(dateOfBirth) FROM student);
+
+select*
+from student
+1	Adam	Văn A	1999-03-15	2017
+2	Trần	Thị B	2000-11-25	2018
+3	Lê	Minh C	1998-07-10	2016
+4	Phạm	Quốc D	2001-02-20	2019
+6	Vũ	Văn F	2000-09-12	2018
+7	Bùi	Thị G	1999-04-30	2017
+8	Hoàng	Văn H	1998-06-05	2016
+9	Phan	Thị I	2001-12-01	2019
+10	Đinh	Văn J	2000-08-14	2018
+
+---------------------
+cau11
+ALTER TABLE course
+DROP COLUMN yearCommenced;
+
+select*
+from course
+
+101	TOáN HọC	3
+102	VậT Lý	4
+103	HóA HọC	3
+104	SINH HọC	4
+105	KHOA HọC MáY TíNH	6
+106	KINH Tế HọC	3
+107	TâM Lý HọC	4
+108	Kỹ THUậT	5
+109	LịCH Sử	3
+110	NGôN NGữ ANH	3
+
+---------------------------------
+Cau12
+ALTER TABLE staff
+RENAME TO employee;
+
+--------------------------
+Cau13
+
+
+
+
+
+
+
+
+
+
+
